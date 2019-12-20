@@ -16,10 +16,11 @@ const LoginPage = (props)=>{
 
     const submitForm = (e) =>{
         e.preventDefault();
-        axios.post('http://localhost:4000/api/login',{username:username,password:password})
-            .then(data=>{
+        axios.post('http://localhost:3300/api/auth/login',{username:username,password:password})
+            .then(res=>{
                 console.log('login successful');
-                console.log(data);
+                console.log(res);
+                sessionStorage.setItem("token",res.data.token)
                 props.history.push("/");
             })
             .catch(error=>{

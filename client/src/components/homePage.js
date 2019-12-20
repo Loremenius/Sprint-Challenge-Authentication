@@ -4,8 +4,16 @@ import axios from "axios";
 const HomePage = (props)=>{
     const [users, setUsers] = useState([]);
 
+    const axiosWithAuth = () =>{
+        return axios.create({
+            headers: {
+              Authorization: `${sessionStorage.getItem("token")}`
+            }
+          });
+    }
+
     useEffect(()=>{
-        axios.get("http://localhost:4000/api/restricted/users", { headers:{withCredentials:true}})
+        axiosWithAuth().get("http://localhost:3300/api/jokes")
             .then(res=>{
                 console.log(res.data);
                 setUsers(res.data);
@@ -19,8 +27,8 @@ const HomePage = (props)=>{
     return(
         <div className="home">
             {users.map((item)=>(
-                <div className="user">
-                    <p>{item.username}</p>
+                <div className="joke">
+                    <p>{item.joke}</p>
                 </div>
             ))}
         </div>

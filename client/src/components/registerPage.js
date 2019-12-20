@@ -16,7 +16,7 @@ const RegisterPage = (props)=>{
 
     const submitForm = (e) =>{
         e.preventDefault();
-        axios.post('http://localhost:4000/api/register',{username:username,password:password})
+        axios.post('http://localhost:3300/api/auth/register',{username:username,password:password})
             .then(data=>{
                 console.log('register successful');
                 props.history.push("/login");

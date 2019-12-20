@@ -2,6 +2,8 @@ import React from 'react';
 import {Route} from "react-router-dom";
 import {Link} from "react-router-dom";
 
+import PrivateRoute from "./components/PrivateRoute";
+
 import RegisterPage from "./components/registerPage";
 import HomePage from "./components/homePage";
 import LoginPage from "./components/loginPage";
@@ -19,7 +21,9 @@ function App() {
 
 
       <div className="routes">
-        <Route exact path ="/" component={HomePage}/>
+      <PrivateRoute exact path="/">
+              <HomePage/>
+        </PrivateRoute>
         <Route exact path="/register" component={RegisterPage}/>
         <Route exact path="/login" component={LoginPage}/>
       </div>
