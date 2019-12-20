@@ -5,9 +5,9 @@ const db = require('../database/dbConfig');
 
 router.post('/register', (req, res) => {
   // implement registration
-  const password = bcrypt.hash(req.body.password,08);
-  db("users").insert({username:req.body.username, password:password})
-    ,then(data=>{
+  req.body.password = bcrypt.hashSync(req.body.password,8);
+  db("users").insert({...req.body},"*")
+    .then(data=>{
       res.status(201).json({message:"User created successfully"});
     })
     .catch(error=>{

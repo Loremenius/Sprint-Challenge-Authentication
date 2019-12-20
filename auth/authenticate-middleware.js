@@ -5,7 +5,7 @@
 
 module.exports = (req, res, next) => {
   const { authorization } = req.headers;
-  console.log(`checking for valid token`);
+  console.log(authorization);
 
   if (authorization) {
     const secret = process.env.JWT_SECRET || "Death Star Plans Secured";
