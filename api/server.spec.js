@@ -62,19 +62,19 @@ describe("GET /api/jokes",function(){
                 expect(res.body.message).toBe("Please login and try again");
             });
     });
-    // //valid token
-    // it("should return a 400 Error", function(){
-    //     return request(server).get("/api/jokes")
-    //         .set('authorization', "test")
-    //         .then(res=>{
-    //             expect(res.status).toBe(400);
-    //         });
-    // });
-    // it("should message asking user to relogin", function(){
-    //     return request(server).get("/api/jokes")
-    //         .set('authorization', token)
-    //         .then(res=>{
-    //             expect(res.body.message).toBe("Please login and try again");
-    //         });
-    // });
+    //valid token
+    it("should return a 200 Error", function(){
+        return request(server).get("/api/jokes")
+            .set('Authorization', token)
+            .then(res=>{
+                expect(res.status).toBe(200);
+            });
+    });
+    it("should return an array", function(){
+        return request(server).get("/api/jokes")
+            .set('Authorization', token)
+            .then(res=>{
+                expect(res.body instanceof Array).toBe(true);
+            });
+    });
 });
